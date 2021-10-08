@@ -1,0 +1,58 @@
+
+def user_setup():
+    setup = str(input("Player 1, please choose X or O\n")).upper()
+    while (setup != 'X' and setup != 'O'):
+        setup = str(input("Invalid choice, Player 1, please choose X or O\n")).upper()
+    if setup == 'X':
+        setup2 = 'O'
+    elif setup == 'O':
+        setup2 = 'X'
+    else:
+        raise Exception("Choose X or O")
+    return setup,setup2
+
+def user_choice(isplayer1,board,p1,p2):
+    grid = list(range(10))
+    if isplayer1:
+        player = 1
+    else:
+        player = 2
+    choice = input("Player {0} choose a spot on the grid\n{1}\n{2}\n{3}\n".format(player,grid[0:3],grid[3:6],grid[6:9]))
+    while (choice not in ['0','1','2','3','4','5','6','7','8'] or board[int(choice)] != '-'):
+        choice = input("Invalid choice, Player {0} choose a spot on the grid\n{1}\n{2}\n{3}\n".format(player,grid[0:3],grid[3:6],grid[6:9]))
+    choice = int(choice)
+    if (choice in grid) and (board[choice] == '-') and isplayer1:
+      board[choice] = p1
+    elif (choice in grid) and (board[choice] == '-') and not isplayer1:
+      board[choice] = p2
+    else:
+        raise Exception("You cannot choose there")
+    isplayer1 = not isplayer1
+    return isplayer1,board
+
+def is_winner(board,isplayer1):
+    wins = [[0,1,2],[3,4,5],[6,7,8],[0,4,8],[2,4,6],[0,3,6],[1,4,7],[2,5,8]]
+    for i in wins:
+        if all(['X' == board[j] for j in i]) or all(['O' == board[j] for j in i]):
+            if isplayer1:
+                print('Congratulations Player 2!')
+            else:
+                print('Congratulations Player 1!')
+            return True
+    if '-' not in board:
+        print('Draw')
+        return True
+    else:
+        return False
+            
+            
+def main():
+    isplayer1 = True
+    board = ['-' for i in range(9)]
+    print("Current board state:\n{0}\n{1}\n{2}\n".format(board[0:3],board[3:6],board[6:9]))
+    won = False
+    p1,p2 = user_setup()
+    while won == False:
+        isplayer1,board = user_choice(isplayer1,board,p1,p2)
+        print("Current board state:\n{0}\n{1}\n{2}\n".format(board[0:3],board[3:6],board[6:9]))
+        won = is_winner(board,isplayer1)
