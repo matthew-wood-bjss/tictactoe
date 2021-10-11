@@ -1,3 +1,4 @@
+from typing import List
 def user_setup():
     '''Function that sets up the game by giving Player 1 the choice of being Token X or O. If an invalid choice is given, try again.
     Args:       None
@@ -65,7 +66,7 @@ def is_winner(board,isplayer1):
     else:
         return False
             
-def print_board(board):
+def print_board(board: List[str]) -> None:
     '''Function to print the current board state.
     Args:       board (list)
 
