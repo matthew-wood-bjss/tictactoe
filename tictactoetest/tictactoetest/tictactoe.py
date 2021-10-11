@@ -66,6 +66,10 @@ def is_winner(board,isplayer1):
         return False
             
 def print_board(board):
+    '''Function to print the current board state.
+    Args:       board (list)
+
+    Returns:    None'''
     print("Current board state:\n{0}\n{1}\n{2}\n".format(board[0:3],board[3:6],board[6:9]))
 
 def main():
@@ -83,4 +87,5 @@ def main():
         print_board(board)
         won = is_winner(board,isplayer1)
 
-main()
+if __name__ == "__main__":
+    main()
