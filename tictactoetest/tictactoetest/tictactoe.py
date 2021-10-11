@@ -65,7 +65,9 @@ def is_winner(board,isplayer1):
     else:
         return False
             
-            
+def print_board(board):
+    print("Current board state:\n{0}\n{1}\n{2}\n".format(board[0:3],board[3:6],board[6:9]))
+
 def main():
     '''Function to start the game. continues to play and only ends if someone has won the game or there is a draw.
     Args:       None
@@ -73,12 +75,12 @@ def main():
     Returns:    None'''
     isplayer1 = True
     board = ['-' for i in range(9)]
-    print("Current board state:\n{0}\n{1}\n{2}\n".format(board[0:3],board[3:6],board[6:9]))
+    print_board(board)
     won = False
     p1,p2 = user_setup()
     while won == False:
         isplayer1,board = user_choice(isplayer1,board,p1,p2)
-        print("Current board state:\n{0}\n{1}\n{2}\n".format(board[0:3],board[3:6],board[6:9]))
+        print_board(board)
         won = is_winner(board,isplayer1)
 
 main()
