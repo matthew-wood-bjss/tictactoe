@@ -12,10 +12,8 @@ def user_setup() -> Tuple[str, str]:
         setup = str(input("Invalid choice, Player 1, please choose X or O\n")).upper()
     if setup == "X":
         setup2 = "O"
-    elif setup == "O":
-        setup2 = "X"
     else:
-        raise Exception("Choose X or O")
+        setup2 = "X"
     return setup, setup2
 
 
@@ -53,10 +51,8 @@ def user_choice(
     choice = int(choice)
     if (choice in grid) and (board[choice] == "-") and isplayer1:
         board[choice] = p1
-    elif (choice in grid) and (board[choice] == "-") and not isplayer1:
-        board[choice] = p2
     else:
-        raise Exception("You cannot choose there")
+        board[choice] = p2
     isplayer1 = not isplayer1
     return isplayer1, board
 
