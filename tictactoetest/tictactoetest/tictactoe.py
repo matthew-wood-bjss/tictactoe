@@ -1,7 +1,7 @@
 from typing import List, Tuple
 
 
-def user_setup() -> Tuple(str, str):
+def user_setup() -> Tuple[str, str]:
     """Function that sets up the game by giving Player 1 the choice of being Token X or O. If an invalid choice is given, try again.
     Args:       None
 
@@ -21,7 +21,7 @@ def user_setup() -> Tuple(str, str):
 
 def user_choice(
     isplayer1: bool, board: List[str], p1: str, p2: str
-) -> Tuple(bool, List[str]):
+) -> Tuple[bool, List[str]]:
     """Function that gives the respective player's turn the choice of where to go on the board, updates said board and changes whose turn it is.
     If an invalid choice is given, try again.
     Args:       isplayer1 (bool): is it Player 1's turn?
@@ -114,7 +114,7 @@ def main():
     print_board(board)
     won = False
     p1, p2 = user_setup()
-    while won == False:
+    while won is False:
         isplayer1, board = user_choice(isplayer1, board, p1, p2)
         print_board(board)
         won = is_winner(board, isplayer1)
